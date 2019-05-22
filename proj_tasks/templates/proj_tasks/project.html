@@ -1,0 +1,54 @@
+{% extends 'proj_tasks/base.html' %}
+
+{% block header %}
+  <h2>{{ project }}</h2>
+{% endblock header %}
+
+{% block content %}
+
+  <p>
+    <a href="{% url 'proj_tasks:new_task' project.id %}">add new entry</a>
+  </p>
+  
+  {% for task in tasks %}
+      {% if task.task_status == "To_Do" %}
+		<div class="panel panel-success">
+		  <div class="panel-heading">
+			<h3>
+			  {{ task.task_header }}
+			  {{ task.task_status}}
+			  <small>
+				<a href="{% url 'proj_tasks:edit_task' task.id %}">
+				  Update</a>
+			  </small>
+			</h3>
+		  </div>
+		  <div class="panel-body">
+			{{ task.task_Description|linebreaks }}
+			{{ task.due_date|date:'M d, Y H:i' }}
+		  </div>
+		</div> 
+		
+	    {% elif task.due_date %}
+			<div class="panel panel-danger">
+			  <div class="panel-heading">
+				<h3>
+				  {{ task.task_header }}
+				  {{ task.task_status}}
+				  <small>
+					<a href="{% url 'proj_tasks:edit_task' task.id %}">
+					  Update</a>
+				  </small>
+				</h3>
+			  </div>
+			  <div class="panel-body">
+				{{ task.task_Description|linebreaks }}
+				{{ task.due_date|date:'M d, Y H:i' }}
+			  </div>
+			</div>	<!-- panel -->
+		{% endif %}
+  {% empty %}
+    There are no entries for this topic yet.
+  {% endfor %}
+
+{% endblock content %}

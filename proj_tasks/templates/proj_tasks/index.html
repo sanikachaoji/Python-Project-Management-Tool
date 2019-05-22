@@ -1,0 +1,18 @@
+{% extends "proj_tasks/base.html" %}
+{% block header %}
+	<div class='jumbotron'>
+		<h1>Track your Tasks</h1>
+		
+	</div>
+{% endblock header %}
+{% block content %}
+	<h2>
+		<a href="{% url 'users:register' %}">Register</a> to make
+		your own account, and track the Project tasks you're working on.
+	</h2>
+	<h2>
+		Now tracking your tasks is easy. Make an entry summerizing 
+		what needs to be done along with dates, attachments and 
+		track your progress. Never miss a deadline.
+	</h2>
+{% endblock content %}
