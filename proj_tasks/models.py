@@ -21,7 +21,7 @@ class Task(models.Model):
 	date_added = models.DateTimeField(auto_now_add = True)
 	due_date = models.DateTimeField()
 	task_status = models.CharField(max_length= 15, choices=task_status_choices, default=ToDo)
-	attachments = models.FileField(upload_to='uploads/%Y/%m/%d/')
+	attachments = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	def __str__(self):
 		return self.task_header[:50] + "..." +":"+ self.task_Description[0:50]

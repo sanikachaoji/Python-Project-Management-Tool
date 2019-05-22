@@ -1,13 +1,25 @@
 {% extends "proj_tasks/base.html" %}
 
 {% block content %}
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
 
+    });
+  });
+  </script>
   <p><a href="{% url 'proj_tasks:project' project.id %}">{{ project }}</a></p>
     
   <p>Add a new task:</p>
   <form action="{% url 'proj_tasks:new_task' project.id %}" method='post'>
+  
     {% csrf_token %}
     {{ form.as_p }}
+	
     <button name='submit'>add task</button>
   </form>
     
